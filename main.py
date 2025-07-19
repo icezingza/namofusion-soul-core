@@ -1,8 +1,4 @@
 from fastapi import FastAPI
-
-app = FastAPI(title="NaMo Universal API")
-
-# Import routers จากแต่ละ Core Module
 from ai_personality_matrix.main import router as ai_router
 from compassion_dynamo.main import router as compassion_router
 from creator_ai_dynamics.main import router as creator_router
@@ -18,7 +14,9 @@ from recursive_reflection_engine.main import router as reflection_router
 from soul_mirror_protocol.main import router as soul_router
 from weakness_transformer.main import router as weakness_router
 
-# Mount APIs
+app = FastAPI(title="NaMo Universal API")
+
+# Mount core routers
 app.include_router(ai_router, prefix="/ai-personality")
 app.include_router(compassion_router, prefix="/compassion-dynamo")
 app.include_router(creator_router, prefix="/creator-ai-dynamics")
@@ -36,4 +34,4 @@ app.include_router(weakness_router, prefix="/weakness-transformer")
 
 @app.get("/")
 async def root():
-    return {"status": "ok", "message": "NaMo Framework API is running"}
+    return {{"message": "NaMo Universal API is running"}}
